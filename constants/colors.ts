@@ -16,6 +16,27 @@ export default {
     40: '#8AC0FF',
     20: '#BDDCFF',
   },
+  green: {
+    100: '#00A86B',
+    80: '#2AB784',
+    60: '#65D1AA',
+    40: '#93EACA',
+    20: '#CFFAEA',
+  },
+  red:{
+    100: '#FD3C4A',
+    80: '#FD5662',
+    60: '#FD6F7A',
+    40: '#FDA2A9',
+    20: '#FDD5D7',
+  },
+  yellow:{
+    100: '#FCAC12',
+    80: '#FCBB3C',
+    60: '#FCCC6F',
+    40: '#FCDDA1',
+    20: '#FCEED4',
+  },
   gray: {
     100: '#91919F',
     80: '#E3E5E5',

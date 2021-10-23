@@ -4,16 +4,17 @@ import { Image, StyleSheet } from 'react-native';
 import Button from '../../components/Button';
 import { View } from '../../components/Themed';
 import Typography from '../../components/Typography';
+import Layout from '../../constants/Layout';
 
 const PageStyle = StyleSheet.create({
     pageView: { 
-        height: 500, 
+        height: Layout.window.height * 0.65, 
         marginBottom: 50 
     },
     container: {
         justifyContent: 'center',
         alignContent: 'center',
-        paddingHorizontal: 10
+        paddingHorizontal: 30
     },
     image: {
         height: 250, 
@@ -21,9 +22,9 @@ const PageStyle = StyleSheet.create({
     }
 })
 
-function OnboardingScreen() {
+function OnboardingScreen({ navigation }) {
     return (
-        <View style={{ padding: 20, flex: 1,  justifyContent: 'center', alignContent: 'center' }}>
+        <View style={{ paddingVertical: 20, flex: 1,  justifyContent: 'center', alignContent: 'center' }}>
             <PageView style={PageStyle.pageView}
                 showPageIndicator={true}
             >
@@ -56,9 +57,9 @@ function OnboardingScreen() {
                     <Typography.BodyLg style={{textAlign: 'center'}}>Setup your budget for each category so you in control</Typography.BodyLg>
                 </View>
             </PageView>
-            <View>
-                <Button text="Create an Account" style={{marginBottom: 15}} onPress={() => console.log('working')} />
-                <Button text="Login" type="outline" onPress={() => console.log('working')} />
+            <View style={{padding: 20}}>
+                <Button text="Create an Account" style={{marginBottom: 15}} onPress={() => navigation.navigate('SignUp')} />
+                <Button text="Login" type="outline" onPress={() => navigation.navigate('Login')} />
             </View>
         </View>
     )

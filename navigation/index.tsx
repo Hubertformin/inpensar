@@ -7,8 +7,12 @@ import { ColorSchemeName, StyleSheet, TouchableOpacity, Image } from 'react-nati
 import PlaceHolderComponent from '../components/Placeholder';
 import { Text, View } from '../components/Themed';
 
-import Colors from '../constants/colors';
+import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/colorScheme';
+import CreatePinScreen from '../screens/auth/create-pin.screen';
+import ForgotPasswordScreen from '../screens/auth/forgot-password.screen';
+import LoginScreen from '../screens/auth/login.screen';
+import SignUpScreen from '../screens/auth/signup.screen';
 
 import BudgetScreen from '../screens/Budget/budget.screen';
 import HomeScreen from '../screens/Home/home.screen';
@@ -84,6 +88,9 @@ function BottomTabs() {
                 component={HomeScreen}
                 options={({ navigation }) => ({
                     title: 'Home',
+                    headerStyle: {
+                        backgroundColor: '#FCEFD8'
+                    },
                     headerShown: false,
                     tabBarIcon: ({ color }) => {
                         return (
@@ -178,9 +185,70 @@ function RootNavigator() {
     return (
         <Stack.Navigator>
             <Stack.Screen name="Onboarding" component={OnboardingScreen} options={{headerShown: false}} />
+            <Stack.Screen name="Login" component={LoginScreen} 
+                options={{
+                    title: 'Login',
+                    headerStyle: {
+                      backgroundColor: Colors.gray[20]
+                    },
+                    headerTintColor: Colors.darkText[60],
+                    headerTitleStyle: {
+                      fontWeight: 'bold',
+                    },
+                    headerShadowVisible: false,
+                    headerBackTitleVisible: false
+                  }}
+            />
+            <Stack.Screen name="SignUp" component={SignUpScreen} 
+                options={{
+                    title: 'Create account',
+                    headerStyle: {
+                      backgroundColor: Colors.gray[20]
+                    },
+                    headerTintColor: Colors.darkText[60],
+                    headerTitleStyle: {
+                      fontWeight: 'bold',
+                    },
+                    headerShadowVisible: false,
+                    headerBackTitleVisible: false
+                  }}
+            />
+            <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} 
+                options={{
+                    title: 'Forgot password',
+                    headerStyle: {
+                      backgroundColor: Colors.gray[20]
+                    },
+                    headerTintColor: Colors.darkText[60],
+                    headerTitleStyle: {
+                      fontWeight: 'bold',
+                    },
+                    headerShadowVisible: false,
+                    headerBackTitleVisible: false
+                  }}
+            />
+            <Stack.Screen name="CreatePinScreen" component={CreatePinScreen} 
+                options={{
+                    title: 'Create Pin',
+                    headerStyle: {
+                      backgroundColor: Colors.primary[100]
+                    },
+                    headerTintColor: Colors.gray[20],
+                    headerTitleStyle: {
+                      fontWeight: 'bold',
+                    },
+                    headerShadowVisible: false,
+                    headerBackTitleVisible: false
+                  }}
+            />
             <Stack.Screen name="Root" component={BottomTabs} options={{headerShown: false}} />
             <Stack.Group screenOptions={{ presentation: 'modal' }}>
-                <Stack.Screen name="AddTransactionModal" component={AddTransactionModal} />
+                <Stack.Screen name="AddTransactionModal" 
+                    component={AddTransactionModal}
+                    options={{
+                        title: 'Add Transaction'
+                    }}
+                />
             </Stack.Group>
         </Stack.Navigator>
     )
