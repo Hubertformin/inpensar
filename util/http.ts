@@ -1,0 +1,1 @@
+const BASE_URL = 'https://us-central1-no-vawi.cloudfunctions.net/inpensarApi';
