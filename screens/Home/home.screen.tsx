@@ -12,6 +12,7 @@ import Layout from '../../constants/Layout';
 import { LineChart } from "react-native-gifted-charts"
 import { ScrollView } from 'react-native-gesture-handler';
 import { BottomSheet } from 'react-native-btr';
+import { Categories } from '../../constants/Categories';
 
 const styles = StyleSheet.create({
     container: {
@@ -34,11 +35,17 @@ const styles = StyleSheet.create({
         alignSelf:'stretch'
     },
     absoluteContainer: {
-        position: 'absolute', flex: 1, right: 0, left: 0, top: 0, backgroundColor: 'transparent'
+        position: 'absolute', 
+        flex: 1, 
+        right: 0, 
+        left: 0, 
+        top: 0, 
+        bottom: 0,
+        backgroundColor: 'transparent'
     },
     scrollable: {
         flex: 1,
-        alignSelf:'stretch'
+        alignSelf:'stretch',
     },
     actionSelect: {
         height: 40,
@@ -80,16 +87,24 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderColor: Colors.gray[60],
         paddingVertical: 15
+    },
+    recentTransaction: {
+        paddingHorizontal: 20,
+        backgroundColor: 'transparent'
+    },
+    transactionItem: {
+        backgroundColor: 'transparent',
+        paddingVertical: 10
     }
 })
 
-function HomeScreen() {
+function HomeScreen({ navigation }) {
 
     const [isOpen, setOpen] = React.useState(false);
-    const [selectedMonth, setSelectedMonth] = React.useState('October');
+    const [selectedMonth, setSelectedMonth] = React.useState({id: 1, value: 'January'});
 
-    const lineData = [{label: 'lable', value: 0},{label: 'lable', value: 10},{label: 'lable', value: 8},{label: 'lable', value: 58},{label: 'lable', value: 56},{label: 'lable', value: 78},{label: 'lable', value: 74},{label: 'lable', value: 98}, {label: 'lable', value: 10}, {label: 'lable', value: 100}];
-    const lineData2 = [{label: 'lable', value: 0},{label: 'lable', value: 20},{label: 'lable', value: 18},{label: 'lable', value: 40},{label: 'lable', value: 36},{label: 'lable', value: 60},{label: 'lable', value: 54},{label: 'lable', value: 85}, {label: 'lable', value: 10}, {label: 'lable', value: 100}];
+    const lineData = [{label: '4 weeks ago', value: 0},{label: '3 weeks ago', value: 10},{label: 'Last Monday', value: 8},{label: 'Tuesday', value: 108},{label: 'Two days ago', value: 56},{label: 'Yesterday', value: 78},{label: 'Today', value: 74}];
+    const lineData2 = [{label: '4 weeks ago', value: 0},{label: '3 weeks ago', value: 50},{label: 'Last Monday', value: 18},{label: 'Tueday', value: 40},{label: 'Two days ago', value: 36},{label: 'Yesterday', value: 60},{label: 'Today', value: 54}];
 
     const toggleMonthModal = () => {
         console.log('opem')
@@ -97,7 +112,7 @@ function HomeScreen() {
     }
 
     const selectMonth = (item) => {
-        setSelectedMonth(item.key);
+        setSelectedMonth(item);
         setOpen(false);
     }
     
@@ -117,7 +132,7 @@ function HomeScreen() {
                     <View style={styles.actionBar}>
                         <TouchableOpacity onPress={toggleMonthModal}>
                             <View style={styles.actionSelect}> 
-                                <Typography.Body>{selectedMonth}</Typography.Body>
+                                <Typography.Body>{selectedMonth.value}</Typography.Body>
                                 <Ionicons style={{marginLeft: 5}} name="chevron-down" size={24} color={Colors.primary[100]} />
                             </View>
                         </TouchableOpacity>
@@ -154,7 +169,7 @@ function HomeScreen() {
                             </View>
                         </View>
 
-                        <View style={{height: 300}}>
+                        <View style={{height: 300, backgroundColor: 'transparent', paddingVertical: 10}}>
 
                             <LineChart
                                 areaChart
@@ -163,7 +178,7 @@ function HomeScreen() {
                                 data2={lineData2}
                                 height={185}
                                 showVerticalLines={false}
-                                spacing={50}
+                                spacing={95}
                                 initialSpacing={0}
                                 color1={Colors.green[100]}
                                 color2={Colors.red[100]}
@@ -181,6 +196,29 @@ function HomeScreen() {
                                 textFontSize={13}
                                 showXAxisIndices={false}
                             />
+                        </View>
+
+                        {/* show transactions */}
+                        <View style={styles.recentTransaction}>
+                            <View style={{padding: 10, flexDirection: 'row', justifyContent: 'space-between'}}>
+                                <Typography.TitleThree>Recent Transactions</Typography.TitleThree>
+                                <Pressable onPress={() => navigation.navigate('transactions')}>
+                                    <Typography.Body style={{color: Colors.primary[100]}}>See All</Typography.Body>
+                                </Pressable>
+                            </View>
+
+                            {Categories.expenses.map((item) => {
+                                const paths = '../../assets/travel.png';
+                                const icon = require(paths);
+                                    return (
+                                        <View style={styles.transactionItem}>
+                                            <Image
+                                                source={icon}
+                                                style={{height: 60, width: 60}}
+                                             />
+                                        </View>
+                                    );
+                                })}
                         </View>
 
                     </ScrollView>
@@ -213,25 +251,25 @@ function HomeScreen() {
                             </Typography.TitleThree>
                             <FlatList
                                 data={[
-                                    {key: 'January'},
-                                    {key: 'Ferbuary'},
-                                    {key: 'March'},
-                                    {key: 'April'},
-                                    {key: 'May'},
-                                    {key: 'June'},
-                                    {key: 'July'},
-                                    {key: 'August'},
-                                    {key: 'Semptember'},
-                                    {key: 'October'},
-                                    {key: 'November'},
-                                    {key: 'December'},
+                                    {id: 1, value: 'January'},
+                                    {id: 2, value: 'Ferbuary'},
+                                    {id: 3, value: 'March'},
+                                    {id: 4, value: 'April'},
+                                    {id: 5, value: 'May'},
+                                    {id: 6, value: 'June'},
+                                    {id: 7, value: 'July'},
+                                    {id: 8, value: 'August'},
+                                    {id: 9, value: 'Semptember'},
+                                    {id: 10, value: 'October'},
+                                    {id: 11, value: 'November'},
+                                    {id: 12, value: 'December'},
                             ]}
                             renderItem={({item}) => {
                                 return (
                                 <Pressable onPress={() => selectMonth(item)}>
                                     <View style={styles.bottmListItem}>
-                                        <View style={styles.leadingBox}>{item.key === selectedMonth && <Ionicons name="checkmark" size={20} color={Colors.primary[100]} />}</View>
-                                        <Typography.Body style={{fontSize: 16}}>{item.key}</Typography.Body>
+                                        <View style={styles.leadingBox}>{item.id === selectedMonth.id && <Ionicons name="checkmark" size={20} color={Colors.primary[100]} />}</View>
+                                        <Typography.Body style={{fontSize: 16}}>{item.value}</Typography.Body>
                                     </View>
                                 </Pressable>
                                 );

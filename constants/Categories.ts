@@ -66,72 +66,77 @@ const expense_categories = [
       type: 'expenses',
       color: '#007C91'
     },
-    { icon: 'work', name: 'Work', type: 'expenses', color: '#e37414' },
-    { icon: 'gifts', name: 'Gifts', type: 'expenses', color: '#f00e5b' },
+    { icon: 'work', name: 'Work', type: 'expenses', color: '#E37414' },
+    { icon: 'gifts', name: 'Gifts', type: 'expenses', color: '#F50057' },
     {
       icon: 'sports',
       name: 'Sports & Hobbies',
       type: 'expenses',
-      color: '#1c8944'
+      color: '#880E4F'
     },
-    { icon: 'other', name: 'Other', type: 'expenses', color: '#ef6c3d' }
+    { icon: 'other', name: 'Other', type: 'expenses', color: '#ADADAD' }
   ]
 
 
 const income_categories = [
-    { icon: 'salary', name: 'Salary', type: 'income', color: '#681617' },
+    { icon: 'salary', name: 'Salary', type: 'income', color: '#17A437' },
     {
       icon: 'business',
       name: 'Business',
       type: 'income',
-      color: '#4f1edf'
+      color: '#F57C00'
     },
     { 
         icon: 'gifts', 
         name: 'Gifts', 
         type: 'income', 
-        color: '#3147c1' 
+        color: '#F50057' 
     },
     {
       icon: 'extra_income',
       name: 'Extra Income',
       type: 'income',
-      color: '#4b2228'
+      color: '#26418F'
     },
     { 
         icon: 'loan', 
         name: 'Loan', 
         type: 'income', 
-        color: '#ef2a56' 
+        color: '#1976D2' 
     },
     {
       icon: 'parantal_leave',
       name: 'Parantal leave',
       type: 'income',
-      color: '#126f8d'
+      color: '#1976D2'
     },
     {
       icon: 'insurance_payout',
       name: 'Insurance Payout',
       type: 'income',
-      color: '#7768cc'
+      color: '#D81B60'
     },
     {
       icon: 'allowance',
       name: 'Allowance',
       type: 'income',
-      color: '#ea7f5a'
+      color: '#BC5100'
     },
     {
       icon: 'debt_settlement',
       name: 'Debt settlement',
       type: 'income',
-      color: '#0c17dd'
+      color: '#087F23'
     },
     { 
         icon: 'other', 
         name: 'Other', 
         type: 'income', 
-        color: '#f085df' 
+        color: '#ADADAD' 
     }  
   ]
+
+  export const Categories =  {
+      expenses: expense_categories,
+      income: income_categories
+  }

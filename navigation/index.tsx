@@ -73,7 +73,7 @@ function BottomTabs() {
                 tabBarStyle: [
                     {
                         position: 'absolute',
-                        bottom: 15,
+                        bottom: 5,
                         left: 10,
                         right: 10,
                         height: 65,
