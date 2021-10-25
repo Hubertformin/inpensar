@@ -39,6 +39,7 @@ const TabStyles = StyleSheet.create({
 const CustomTabButton = (props) => {
     return (
         <TouchableOpacity
+        activeOpacity={0.8}
             style={{
                 top: -20,
                 justifyContent: 'center',
@@ -152,7 +153,8 @@ function BottomTabs() {
                 component={BudgetScreen}
                 options={({ navigation }) => ({
                     title: 'Budget',
-                    headerShown: false,
+                    // headerShown: false,
+                    headerShadowVisible: false,
                     headerStyle: {
                         backgroundColor: Colors[colorScheme].background,
                     },
@@ -171,6 +173,7 @@ function BottomTabs() {
                 component={ProfileScreen}
                 options={({ navigation }) => ({
                     title: 'Profile',
+                    headerShadowVisible: false,
                     headerStyle: {
                         backgroundColor: Colors[colorScheme].background,
                     },

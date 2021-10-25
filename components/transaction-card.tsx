@@ -3,7 +3,7 @@ import { StyleSheet, View, Image, Pressable } from "react-native";
 import Colors from "../constants/Colors";
 import useTheme from "../hooks/colorScheme";
 import { TransactionsModel } from "../models/transactions.model";
-import { timeAgo } from "../util/date";
+import { formatDate, timeAgo } from "../util/date";
 import { currencyFormatter } from "../util/number";
 import Typography from "./Typography";
 
@@ -59,13 +59,14 @@ export default function TransactionCard({data, onPress}: {data: TransactionsMode
                                 </Typography.Body>
                             </View> : <View></View>
                         }
+                        <Typography.Body style={{color: Colors.gray[100], marginTop: 15}}>{formatDate(data.date)}</Typography.Body>
                     </View>
                 </View>
                 <View style={{paddingTop: 7, backgroundColor: 'transparent', alignItems: 'flex-end', justifyContent: 'space-between'}}>
                     <Typography.Body style={{color: data.type === 'income' ? Colors.green[100] : Colors.red[100]}}>
                         {`${data.type === 'expenses' ? '-': ''}${currencyFormatter(data.amount)}`}
                     </Typography.Body>
-                    <Typography.Body style={{color: Colors.gray[100], marginTop: 10}}>{timeAgo(data.date)}</Typography.Body>
+                    
                 </View>
              </View>
         </Pressable>

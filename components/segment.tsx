@@ -64,7 +64,7 @@ export default function Segment({style, defaultTab, tabs, onChange}: {style?: St
                             <Typography.Body 
                                 key={'text-' + index}  
                                 style={{
-                                    color: selectedTab === tab ? (theme === 'light' ? Colors.primary[100] : Colors.primary[100]) :  Colors[theme].text, 
+                                    color: selectedTab === tab ? (theme === 'light' ? Colors.primary[100] : Colors.primary[20]) :  Colors[theme].text, 
                                     fontSize: 12
                                 }}
                             >
