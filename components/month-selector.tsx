@@ -1,24 +1,25 @@
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
-import { StyleSheet, View, Pressable, FlatList } from "react-native";
+import { StyleSheet, Pressable, FlatList } from "react-native";
 import { BottomSheet } from "react-native-btr";
 import Colors from "../constants/Colors";
 import Typography from "./Typography";
 import Screen from "../constants/Screen";
+import useTheme from "../hooks/colorScheme";
+import { View } from "./Themed";
 
 const styles = StyleSheet.create({
     actionSelect: {
         height: 40,
         borderRadius: 22.5,
-        backgroundColor: Colors.gray[20],
+        // backgroundColor: Colors.gray[20],
         paddingHorizontal: 15,
         alignItems: 'center',
         flexDirection: 'row',
         borderWidth: 1,
-        borderColor: Colors.gray[80]
+        // borderColor: Colors.gray[80]
     },
     monthBottomNav: {
-        backgroundColor: '#fff',
         width: '100%',
         height: Screen.window.height * 0.7,
         paddingHorizontal: 10
@@ -38,6 +39,8 @@ const styles = StyleSheet.create({
 })
 
 export default function MonthSelector({defaultValue = 'January', onSelect}: {defaultValue?: string, onSelect?: (e) => void | undefined}) {
+
+    const theme = useTheme();
 
     const [isOpen, setOpen] = React.useState(false);
 
@@ -78,7 +81,10 @@ export default function MonthSelector({defaultValue = 'January', onSelect}: {def
 
     return (
         <>
-            <Pressable style={styles.actionSelect} onPress={toggleMonthModal}>
+            <Pressable 
+                style={[styles.actionSelect, {backgroundColor: Colors[theme].background, borderColor: Colors[theme].borderColor}]} 
+                onPress={toggleMonthModal}
+            >
                 <Typography.Body>{selectedMonth?.value}</Typography.Body>
                 <Ionicons style={{marginLeft: 5}} name="chevron-down" size={24} color={Colors.primary[100]} />
             </Pressable>

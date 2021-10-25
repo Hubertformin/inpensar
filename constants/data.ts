@@ -35,7 +35,7 @@ const expense_categories = [
       icon: 'https://ik.imagekit.io/enchird/inpensar_categories/car_v9bVajYtBT.png?updatedAt=1635067128480', 
       name: 'Car', 
       type: 'expenses', 
-      color: '#19b966' 
+      color: '#F4511E' 
     },
     {
       icon: 'https://ik.imagekit.io/enchird/inpensar_categories/travel_tw1SEk-Sn4.png?updatedAt=1635067135098',
@@ -53,13 +53,13 @@ const expense_categories = [
       icon: 'https://ik.imagekit.io/enchird/inpensar_categories/education_I2llmeiacf.png?updatedAt=1635067129010',
       name: 'Education',
       type: 'expenses',
-      color: '#8bb9e4'
+      color: '#004BA0'
     },
     {
       icon: 'https://ik.imagekit.io/enchird/inpensar_categories/health_cegTioOHPA.png?updatedAt=1635067130909',
       name: 'Health Care',
       type: 'expenses',
-      color: '#004BA0'
+      color: '#E91E63'
     },
     {
       icon: 'https://ik.imagekit.io/enchird/inpensar_categories/beauty_VYNoGYeBD.png?updatedAt=1635067128297',
@@ -135,13 +135,13 @@ const income_categories = [
       icon: 'https://ik.imagekit.io/enchird/inpensar_categories/parental_leave_ygjnEssSg.png?updatedAt=1635067133816',
       name: 'Parantal leave',
       type: 'income',
-      color: '#1976D2'
+      color: '#D81B60'
     },
     {
       icon: 'https://ik.imagekit.io/enchird/inpensar_categories/insurance_Vk-zR_0_MZ.png?updatedAt=1635067132087',
       name: 'Insurance Payout',
       type: 'income',
-      color: '#D81B60'
+      color: '#006978'
     },
     {
       icon: 'https://ik.imagekit.io/enchird/inpensar_categories/allowance_MxflCsHda1.png',

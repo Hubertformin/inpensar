@@ -1,13 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import * as Font from 'expo-font';
-import useColorScheme from './hooks/colorScheme';
+import useTheme from './hooks/colorScheme';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Navigation from './navigation';
 import { View } from './components/Themed';
 
 export default function App() {
-  const colorScheme = useColorScheme();
+  const colorScheme = useTheme();
   const [appLoaded, setAppLoaded] = useState(false);
 
   useEffect(() => {

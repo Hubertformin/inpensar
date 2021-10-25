@@ -3,12 +3,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import { ColorSchemeName, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { ColorSchemeName, StyleSheet, TouchableOpacity, Image, View } from 'react-native';
 import PlaceHolderComponent from '../components/Placeholder';
-import { Text, View } from '../components/Themed';
+import { Text } from '../components/Themed';
 
 import Colors from '../constants/Colors';
-import useColorScheme from '../hooks/colorScheme';
+import useTheme from '../hooks/colorScheme';
 import CreatePinScreen from '../screens/auth/create-pin.screen';
 import ForgotPasswordScreen from '../screens/auth/forgot-password.screen';
 import LoginScreen from '../screens/auth/login.screen';
@@ -62,7 +62,7 @@ const CustomTabButton = (props) => {
 
 function BottomTabs() {
 
-    const colorScheme = useColorScheme()
+    const colorScheme = useTheme()
 
     return (
         <Tab.Navigator
@@ -89,7 +89,7 @@ function BottomTabs() {
                 options={({ navigation }) => ({
                     title: 'Home',
                     headerStyle: {
-                        backgroundColor: '#FCEFD8'
+                        backgroundColor: Colors[colorScheme].background,
                     },
                     headerShown: false,
                     tabBarIcon: ({ color }) => {
@@ -108,6 +108,9 @@ function BottomTabs() {
                 options={({ navigation }) => ({
                     title: 'Transactions',
                     // headerShown: false,
+                    headerStyle: {
+                        backgroundColor: Colors[colorScheme].background,
+                    },
                     headerShadowVisible: false,
                     tabBarIcon: ({ color }) => {
                         return (
@@ -148,8 +151,11 @@ function BottomTabs() {
                 name="budget" 
                 component={BudgetScreen}
                 options={({ navigation }) => ({
-                    // title: 'Dashboard',
-                    // headerShown: false,
+                    title: 'Budget',
+                    headerShown: false,
+                    headerStyle: {
+                        backgroundColor: Colors[colorScheme].background,
+                    },
                     tabBarIcon: ({ color }) => {
                         return (
                         <View style={{alignItems: 'center', justifyContent: 'center'}}>
@@ -164,7 +170,10 @@ function BottomTabs() {
                 name="profile" 
                 component={ProfileScreen}
                 options={({ navigation }) => ({
-                    // title: 'Dashboard',
+                    title: 'Profile',
+                    headerStyle: {
+                        backgroundColor: Colors[colorScheme].background,
+                    },
                     // headerShown: false,
                     tabBarIcon: ({ color }) => {
                         return (
@@ -183,6 +192,9 @@ function BottomTabs() {
 const Stack = createNativeStackNavigator();
 
 function RootNavigator() {
+
+    const colorScheme = useTheme();
+
     return (
         <Stack.Navigator>
             <Stack.Screen name="Onboarding" component={OnboardingScreen} options={{headerShown: false}} />
@@ -190,11 +202,12 @@ function RootNavigator() {
                 options={{
                     title: 'Login',
                     headerStyle: {
-                      backgroundColor: Colors.gray[20]
+                        backgroundColor: Colors[colorScheme].background,
                     },
-                    headerTintColor: Colors.darkText[60],
+                    headerTintColor: Colors[colorScheme].text,
                     headerTitleStyle: {
                       fontWeight: 'bold',
+                      color: Colors[colorScheme].text,
                     },
                     headerShadowVisible: false,
                     headerBackTitleVisible: false
@@ -204,11 +217,12 @@ function RootNavigator() {
                 options={{
                     title: 'Create account',
                     headerStyle: {
-                      backgroundColor: Colors.gray[20]
+                        backgroundColor: Colors[colorScheme].background,
                     },
-                    headerTintColor: Colors.darkText[60],
+                    headerTintColor: Colors[colorScheme].text,
                     headerTitleStyle: {
                       fontWeight: 'bold',
+                      color: Colors[colorScheme].text,
                     },
                     headerShadowVisible: false,
                     headerBackTitleVisible: false
@@ -218,11 +232,12 @@ function RootNavigator() {
                 options={{
                     title: 'Forgot password',
                     headerStyle: {
-                      backgroundColor: Colors.gray[20]
+                        backgroundColor: Colors[colorScheme].background,
                     },
-                    headerTintColor: Colors.darkText[60],
+                    headerTintColor: Colors[colorScheme].text,
                     headerTitleStyle: {
                       fontWeight: 'bold',
+                      color: Colors[colorScheme].text,
                     },
                     headerShadowVisible: false,
                     headerBackTitleVisible: false

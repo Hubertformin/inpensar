@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
-import { Pressable, StyleSheet, TouchableOpacity, View, ScrollView } from 'react-native';
+import { Pressable, StyleSheet, View, ScrollView } from 'react-native';
 import { BottomSheet } from 'react-native-btr';
 import MonthSelector from '../../components/month-selector';
 import TransactionCard from '../../components/transaction-card';
@@ -8,11 +8,12 @@ import Typography from '../../components/Typography';
 import Colors from '../../constants/Colors';
 import { Data } from '../../constants/data';
 import Screen from '../../constants/Screen';
+import useTheme from '../../hooks/colorScheme';
 
 const styles = StyleSheet.create({
     page: {
         flex: 1,
-        backgroundColor: Colors.gray[20],
+        // backgroundColor: Colors.gray[20],
     },
     actionBar: {
         flexDirection: 'row',
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
     actionFilterButton: {
         padding: 5,
         borderWidth: 1,
-        borderColor: Colors.gray[80],
+        // borderColor: Colors.gray[80],
         borderRadius: 5,
         width: 40,
         height: 40
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: Colors.primary[20]
+        // backgroundColor: Colors.primary[20]
     },
     filterBottomNav: {
         backgroundColor: '#fff',
@@ -57,33 +58,45 @@ const styles = StyleSheet.create({
 
 function TransactionsScreen() {
 
+    const colorScheme = useTheme()
+
     const [isFilterOpen, setIsFilterOpen] = React.useState(false);
 
     const openFilter = () => {
         setIsFilterOpen(true);
     }
 
+    const ThemeColors = {
+        light: {
+            reportCardBackground: Colors.primary[20]
+        },
+        dark: {
+            reportCardBackground: Colors.primaryAccent[100]
+        }
+    }
 
     return (
         <View style={styles.page}>
             <View style={styles.actionBar}>
                 <MonthSelector />
 
-                <Pressable style={styles.actionFilterButton} onPress={openFilter}>
+                <Pressable style={[styles.actionFilterButton, {borderColor: Colors[colorScheme].borderColor}]} onPress={openFilter}>
                     <Ionicons name="filter" size={30} color={Colors.gray[100]} />
                 </Pressable>
             </View>
 
             <ScrollView style={styles.scrollView}>
-                <View style={styles.reportCard}>
+                <View 
+                    style={[styles.reportCard, {backgroundColor: ThemeColors[colorScheme].reportCardBackground}]}
+                >
                     <Typography.BodyLg style={{color: Colors.primary[100]}}>See your financial report</Typography.BodyLg>
                     <Ionicons name="chevron-forward" size={25} color={Colors.primary[100]} />
                 </View>
 
                 <View style={{marginTop: 30}}>
-                    {Data.transactions.map(record => {
+                    {Data.transactions.map((record, index) => {
                         return (
-                        <View style={{marginBottom: 30}}>
+                        <View key={'tran-card-' + index} style={{marginBottom: 30}}>
                             <Typography.TitleThree>{record.day}</Typography.TitleThree>
                             <View style={{paddingLeft: 0, paddingTop: 15, paddingRight: 0}}>
                                 {

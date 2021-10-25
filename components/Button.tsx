@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, TouchableOpacity, View, StyleSheet, StyleProp, ViewStyle, GestureResponderEvent, ActivityIndicator } from 'react-native';
 import Colors from '../constants/Colors';
+import useTheme from '../hooks/colorScheme';
 
 declare type ButtonType = 'primary' | 'outline' | 'border';
 
@@ -21,6 +22,7 @@ const ButtonStyle = StyleSheet.create({
 
 function Button({style, loading, children, text, onPress, type}: {style?: StyleProp<ViewStyle>, loading?: boolean, children?: any, text?: string, onPress?: ((event: GestureResponderEvent) => any | undefined), type?: ButtonType}) {
     const _type = type ? type : 'primary';
+    const colorScheme = useTheme();
     return(
         <>
         <TouchableOpacity
@@ -40,7 +42,7 @@ function Button({style, loading, children, text, onPress, type}: {style?: StyleP
                </View>
             }
             {_type === 'border' && 
-                <View style={[{borderWidth: 1, borderColor: Colors.gray[80], opacity: loading ? 0.7 : 1}, ButtonStyle.button, style]}>
+                <View style={[{borderWidth: 1, borderColor: Colors[colorScheme].borderColor, opacity: loading ? 0.7 : 1}, ButtonStyle.button, style]}>
                     {loading && <ActivityIndicator size="small" color={Colors.gray[100]} style={{marginRight: 10}} />}
                     {children ? children : <Text style={[{color: Colors.primary[100]}, ButtonStyle.text]}>{text}</Text>}
                </View>

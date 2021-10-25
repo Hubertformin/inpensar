@@ -1,12 +1,17 @@
 import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
-import { TextInput, StyleSheet, TouchableOpacity } from "react-native";
+import { TextInput, StyleSheet, TouchableOpacity, TextInputProps } from "react-native";
 import Colors from "../constants/Colors";
+import useTheme from "../hooks/colorScheme";
 import { View, Text } from "./Themed";
+
+interface InputProps extends TextInputProps {
+    label?: string;
+}
 
 const Style = StyleSheet.create({
     inputContainer: {
-        marginBottom: 20,
+        marginBottom: 35,
         height: 60,
         position: 'relative'
     },
@@ -21,7 +26,6 @@ const Style = StyleSheet.create({
         fontSize: 16,
         fontFamily: 'Gilroy-medium',
         borderWidth: 1,
-        borderColor: Colors.gray[80],
         paddingHorizontal: 10,
         borderRadius: 7,
     },
@@ -49,31 +53,48 @@ function Input({children}) {
     return (subComponents.map((component) => component))
 }
 
-const InputText = ({label, placeholder, onChange}: {label?: string, placeholder?: string, onChange?: ((text: string) => void) | undefined}) => {
+const InputText = (props: InputProps) => {
+
+    const colorScheme = useTheme();
+
     return (
         <View style={Style.inputContainer}>
-            {label && <Text style={Style.label}>{label}</Text>}
-            <TextInput placeholder={placeholder} style={Style.input} onChangeText={(text) => onChange ? onChange(text): null}></TextInput>
+            {props.label && <Text style={Style.label}>{props.label}</Text>}
+            <TextInput 
+                {...props}
+                style={[Style.input, {color: Colors[colorScheme].text, borderColor: Colors[colorScheme].borderColor}]}></TextInput>
         </View>
     )
 }
 
-const InputEmail = ({label, placeholder, onChange}: {label?: string, placeholder?: string, onChange?: ((text: string) => void) | undefined}) => {
+const InputEmail = (props: InputProps) => {
+
+    const colorScheme = useTheme();
+
     return (
         <View style={Style.inputContainer}>
-            {label && <Text style={Style.label}>{label}</Text>}
-            <TextInput placeholder={placeholder} style={Style.input} autoCompleteType={'email'} onChangeText={(text) => onChange ? onChange(text): null}></TextInput>
+            {props.label && <Text style={Style.label}>{props.label}</Text>}
+            <TextInput 
+                {...props} 
+                style={[Style.input, {color: Colors[colorScheme].text, borderColor: Colors[colorScheme].borderColor}]}></TextInput>
         </View>
     )
 }
 
-const InputPassword = ({label, placeholder, onChange}: {label?: string, placeholder?: string, onChange?: ((text: string) => void) | undefined}) => {
+const InputPassword = (props: InputProps) => {
     const [passwordVisible, setPasswordVisisble] = useState(false);
+    const colorScheme = useTheme();
 
     return (
         <View style={Style.inputContainer}>
-            {label && <Text style={Style.label}>{label}</Text>}
-            <TextInput secureTextEntry={!passwordVisible} autoCompleteType={'password'} placeholder={placeholder} style={Style.input}></TextInput>
+            {props.label && <Text style={Style.label}>{props.label}</Text>}
+            <TextInput 
+                {...props}
+                secureTextEntry={!passwordVisible} 
+                autoCompleteType={'password'} 
+                placeholder={props.placeholder} 
+                style={[Style.input, {color: Colors[colorScheme].text, borderColor: Colors[colorScheme].borderColor}]}
+            ></TextInput>
             <View style={Style.passwordEye}>
                 <TouchableOpacity onPress={() => setPasswordVisisble(!passwordVisible)}>
                     {!passwordVisible && <Ionicons name="ios-eye" size={24} color={Colors.gray[100]} />}

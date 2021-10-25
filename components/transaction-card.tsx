@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Image, Pressable } from "react-native";
 import Colors from "../constants/Colors";
+import useTheme from "../hooks/colorScheme";
 import { TransactionsModel } from "../models/transactions.model";
 import { timeAgo } from "../util/date";
 import { currencyFormatter } from "../util/number";
@@ -8,7 +9,7 @@ import Typography from "./Typography";
 
 const styles = StyleSheet.create({
     transactionItem: {
-        backgroundColor: Colors.gray[40],
+        // backgroundColor: Colors.gray[40],
         paddingVertical: 10,
         paddingHorizontal: 15,
         marginBottom: 15,
@@ -16,11 +17,27 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         borderRadius: 20
     }
-})
+});
+
+const ThemeColors = {
+    light: {
+        cardBackground: Colors.gray[40]
+    },
+    dark: {
+        cardBackground: Colors.darkText[80]
+    }
+}
 
 export default function TransactionCard({data, onPress}: {data: TransactionsModel, onPress?: (e) => void | undefined}) {
+
+    const colorScheme = useTheme();
+
     return (
-        <Pressable key={'trans-item-' + data._id} style={styles.transactionItem} onPress={() => onPress ? onPress(data) : null}>
+        <Pressable 
+            key={'trans-item-' + data._id} 
+            style={[styles.transactionItem, {backgroundColor: ThemeColors[colorScheme].cardBackground}]} 
+            onPress={() => onPress ? onPress(data) : null}
+        >
             <View style={{
                 backgroundColor: 'transparent',
                     paddingVertical: 15,

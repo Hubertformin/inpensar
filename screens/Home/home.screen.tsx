@@ -16,6 +16,7 @@ import { currencyFormatter } from '../../util/number';
 import { timeAgo } from '../../util/date';
 import TransactionCard from '../../components/transaction-card';
 import MonthSelector from '../../components/month-selector';
+import useTheme from '../../hooks/colorScheme';
 
 const styles = StyleSheet.create({
     container: {
@@ -69,9 +70,20 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         backgroundColor: 'transparent'
     },
-})
+});
+
+const ThemeColors = {
+    light: {
+        gradientYellow: '#FCEFD8',
+    },
+    dark: {
+        gradientYellow: '#302411'
+    }
+}
 
 function HomeScreen({ navigation }) {
+
+    const colorScheme = useTheme();
 
     const onMonthSelect = (month) => {
         console.log(month);
@@ -85,9 +97,9 @@ function HomeScreen({ navigation }) {
             
         // </SafeAreaView>
             <View style={styles.container}>
-                <StatusBar style="dark" backgroundColor="red" />
+                <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
                 <LinearGradient
-                    colors={['#FCEFD8', '#FFFFFF']}
+                    colors={[ThemeColors[colorScheme].gradientYellow, Colors[colorScheme].background]}
                     style={styles.gradient}
                 ></LinearGradient>
                 <View style={styles.absoluteContainer}>
@@ -114,7 +126,7 @@ function HomeScreen({ navigation }) {
                             />
                             <View style={{backgroundColor: 'transparent', paddingLeft: 15}}>
                                 <Typography.Small style={{marginBottom: 5, color: Colors.gray[20]}}>Income</Typography.Small>
-                                <Typography.TitleThree style={{color: Colors.gray[20]}}>FCFA 45,000</Typography.TitleThree>
+                                <Typography.TitleThree style={{color: Colors.gray[20]}}>FCFA 90,000</Typography.TitleThree>
                             </View>
                         </View>
 
