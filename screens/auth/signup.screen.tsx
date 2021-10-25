@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Image, TouchableOpacity } from 'react-native';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import { View, Text } from '../../components/Themed';
 import Typography from '../../components/Typography';
 import Colors from '../../constants/Colors';
+import * as GoogleSignIn from 'expo-google-sign-in';
 
 const PageStyle = StyleSheet.create({
     container: {
@@ -18,6 +19,38 @@ const PageStyle = StyleSheet.create({
 })
 
 function SignUpScreen({ navigation }) {
+
+    useEffect(() => {
+        initAsync();
+    }, []);
+
+    const initAsync = async () => {
+        await GoogleSignIn.initAsync({
+          // You may ommit the clientId when the firebase `googleServicesFile` is configured
+          clientId: '<YOUR_IOS_CLIENT_ID>',
+        });
+        // this._syncUserWithStateAsync();
+      };
+    
+    const _syncUserWithStateAsync = async () => {
+        const user = await GoogleSignIn.signInSilentlyAsync();
+        // this.setState({ user });
+      };
+
+    
+    const signInWithGoogle = async () => {
+        try {
+          await GoogleSignIn.askForPlayServicesAsync();
+          const { type, user } = await GoogleSignIn.signInAsync();
+          if (type === 'success') {
+            _syncUserWithStateAsync();
+          }
+        } catch ({ message }) {
+          alert('login: Error:' + message);
+        }
+      };
+
+
     return(
         <View style={PageStyle.container}>
             <View style={PageStyle.form}>
@@ -30,7 +63,7 @@ function SignUpScreen({ navigation }) {
                     onPress={() => navigation.navigate('Root')}
                 />
                 <View style={{paddingVertical: 10, alignItems: 'center'}}><Typography.Small>Or with</Typography.Small></View>
-                <Button type="border">
+                <Button onPress={signInWithGoogle} type="border">
                     <Image
                         source={require('../../assets/google-icon.png')}
                         style={{height: 25, width: 25, marginRight: 10}}

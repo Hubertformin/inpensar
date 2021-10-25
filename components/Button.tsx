@@ -19,7 +19,7 @@ const ButtonStyle = StyleSheet.create({
     }
 })
 
-function Button({style, loading, children, text, onPress, type}: {style?: StyleProp<ViewStyle>, loading?: boolean, children?: any, text?: string, onPress?: ((event: GestureResponderEvent) => void | undefined), type?: ButtonType}) {
+function Button({style, loading, children, text, onPress, type}: {style?: StyleProp<ViewStyle>, loading?: boolean, children?: any, text?: string, onPress?: ((event: GestureResponderEvent) => any | undefined), type?: ButtonType}) {
     const _type = type ? type : 'primary';
     return(
         <>

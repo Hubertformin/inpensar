@@ -4,10 +4,10 @@ import { WalletModel } from "./wallet.model";
 export interface TransactionsModel {
     _id?: string;
     category?: CategoryModel;
-    amount?: string;
+    amount?: number;
     date?: string;
     notes?: string,
-    type?: string,
+    type?: 'expenses' | 'income',
     attachment?: {
         type: string;
         url: string;

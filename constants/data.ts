@@ -1,3 +1,5 @@
+import { TransactionsModel } from "../models/transactions.model"
+
 const expense_categories = [
     {
       icon: 'https://ik.imagekit.io/enchird/inpensar_categories/food_ebNZzYIJz.png?updatedAt=1635067130364',
@@ -95,7 +97,7 @@ const expense_categories = [
       type: 'expenses', 
       color: '#ADADAD' 
     }
-  ]
+]
 
 
 const income_categories = [
@@ -161,7 +163,147 @@ const income_categories = [
     }  
   ]
 
-  export const Categories =  {
-      expenses: expense_categories,
-      income: income_categories
+
+const recent_transactions: TransactionsModel[] = [
+    {
+      _id: '1',
+      amount: 150000,
+      category: { 
+        icon: 'https://ik.imagekit.io/enchird/inpensar_categories/salary_ax_xo0ZSi.png?updatedAt=1635067134034', 
+        name: 'Salary', 
+        type: 'income', 
+        color: '#17A437' 
+      },
+      notes: '',
+      type: 'income',
+      date: '2021-10-23T13:04:46.000Z'
+    },
+    {
+      _id: '2',
+      amount: 5000,
+      category: {
+        icon: 'https://ik.imagekit.io/enchird/inpensar_categories/food_ebNZzYIJz.png?updatedAt=1635067130364',
+        name: 'Food & Drink',
+        type: 'expenses',
+        color: '#FD3C4A'
+      },
+      notes: 'Bought food for the house',
+      type: 'expenses',
+      date: '2021-10-20T16:45:46.000Z',
+      recurrent: false
+    },
+    {
+      _id: '3',
+      amount: 2000,
+      category: {
+        icon: 'https://ik.imagekit.io/enchird/inpensar_categories/transport_0C2VtvDuHZ.png?updatedAt=1635067134714',
+        name: 'Transport',
+        type: 'expenses',
+        color: '#FBC02D'
+      },
+      notes: '',
+      type: 'expenses',
+      date: '2021-10-18T17:09:46.000Z',
+      recurrent: false
+    },
+    {
+      _id: '4',
+      amount: 50000,
+      category: {
+        icon: 'https://ik.imagekit.io/enchird/inpensar_categories/education_I2llmeiacf.png?updatedAt=1635067129010',
+        name: 'Education',
+        type: 'expenses',
+        color: '#8bb9e4'
+      },
+      notes: 'Payed Fees',
+      type: 'expenses',
+      date: '2021-10-17T10:14:46.000Z',
+      recurrent: false
+    },
+    
+];
+
+const transactions: {day: string, data: TransactionsModel[]}[] = [
+  {
+    day: 'Today',
+    data: [
+      {
+        _id: '1',
+        amount: 150000,
+        category: { 
+          icon: 'https://ik.imagekit.io/enchird/inpensar_categories/salary_ax_xo0ZSi.png?updatedAt=1635067134034', 
+          name: 'Salary', 
+          type: 'income', 
+          color: '#17A437' 
+        },
+        notes: 'Enchird Inc Salary',
+        type: 'income',
+        date: '2021-10-25T13:04:46.000Z'
+      },
+      {
+        _id: '2',
+        amount: 150000,
+        category: {
+          icon: 'https://ik.imagekit.io/enchird/inpensar_categories/internet_7AqlJlX7R.png?updatedAt=1635067132418',
+          name: 'Internet',
+          type: 'expenses',
+          color: '#007C91'
+        },
+        notes: 'Camtel Internet',
+        type: 'expenses',
+        date: '2021-10-25T13:04:46.000Z'
+      },
+      {
+        _id: '3',
+        amount: 150000,
+        category: {
+          icon: 'https://ik.imagekit.io/enchird/inpensar_categories/education_I2llmeiacf.png?updatedAt=1635067129010',
+          name: 'Education',
+          type: 'expenses',
+          color: '#8bb9e4'
+        },
+        notes: 'Bought udemy courses',
+        type: 'expenses',
+        date: '2021-10-25T13:04:46.000Z'
+      }
+    ]
+  },
+  {
+    day: 'Yesterday',
+    data: [
+      {
+        _id: '1',
+        amount: 150000,
+        category: {
+          icon: 'https://ik.imagekit.io/enchird/inpensar_categories/health_cegTioOHPA.png?updatedAt=1635067130909',
+          name: 'Health Care',
+          type: 'expenses',
+          color: '#004BA0'
+        },
+        notes: 'Bought Malaria drugs',
+        type: 'expenses',
+        date: '2021-10-24T13:04:46.000Z'
+      },
+      {
+        _id: '2',
+        amount: 150000,
+        category: {
+          icon: 'https://ik.imagekit.io/enchird/inpensar_categories/debt_settlement_Zgw1tHdI_.png?updatedAt=1635067128706',
+          name: 'Debt settlement',
+          type: 'income',
+          color: '#087F23'
+        },
+        notes: 'Received payments from Che',
+        type: 'income',
+        date: '2021-10-24T13:04:46.000Z'
+      },
+    ]
   }
+]
+
+export const Data =  {
+      expenses: expense_categories,
+      income: income_categories,
+      recent_transactions,
+      transactions
+}

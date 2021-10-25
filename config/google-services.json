@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "353691467171",
+    "project_id": "inpensar-enchird",
+    "storage_bucket": "inpensar-enchird.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:353691467171:android:5cc3e348c7035e9956ee16",
+        "android_client_info": {
+          "package_name": "com.enchird.inpensar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "353691467171-jiq3fnepc1o467vo2edc88cjth5pu1re.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtEaXiKf-on0dVXCeYf_Uo67aSkVkKR3U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "353691467171-jiq3fnepc1o467vo2edc88cjth5pu1re.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "353691467171-esq0vh8vh6ateso9109up6bvbt03qnbi.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.enchird.inpensar"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

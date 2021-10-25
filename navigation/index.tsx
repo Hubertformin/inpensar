@@ -108,6 +108,7 @@ function BottomTabs() {
                 options={({ navigation }) => ({
                     title: 'Transactions',
                     // headerShown: false,
+                    headerShadowVisible: false,
                     tabBarIcon: ({ color }) => {
                         return (
                         <View style={{alignItems: 'center', justifyContent: 'center'}}>
@@ -246,7 +247,8 @@ function RootNavigator() {
                 <Stack.Screen name="AddTransactionModal" 
                     component={AddTransactionModal}
                     options={{
-                        title: 'Add Transaction'
+                        title: 'Add Transaction',
+                        headerShown: false
                     }}
                 />
             </Stack.Group>

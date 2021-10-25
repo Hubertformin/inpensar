@@ -3,16 +3,19 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Image, TouchableOpacity, Modal, Pressable, FlatList} from 'react-native';
-import {SafeAreaView } from 'react-native-safe-area-context';
 import { View } from '../../components/Themed';
 import Typography from '../../components/Typography';
 import Colors from '../../constants/Colors';
-import Layout from '../../constants/Layout';
+import Screen from '../../constants/Screen';
 
 import { LineChart } from "react-native-gifted-charts"
 import { ScrollView } from 'react-native-gesture-handler';
 import { BottomSheet } from 'react-native-btr';
-import { Categories } from '../../constants/Categories';
+import { Data } from '../../constants/data';
+import { currencyFormatter } from '../../util/number';
+import { timeAgo } from '../../util/date';
+import TransactionCard from '../../components/transaction-card';
+import MonthSelector from '../../components/month-selector';
 
 const styles = StyleSheet.create({
     container: {
@@ -20,7 +23,7 @@ const styles = StyleSheet.create({
         
     },
     gradient: {
-        height: Layout.window.height * 0.5,
+        height: Screen.window.height * 0.5,
         borderBottomLeftRadius: 8,
         borderBottomRightRadius: 8,
     },
@@ -46,15 +49,7 @@ const styles = StyleSheet.create({
     scrollable: {
         flex: 1,
         alignSelf:'stretch',
-    },
-    actionSelect: {
-        height: 40,
-        borderRadius: 22.5,
-        paddingHorizontal: 15,
-        alignItems: 'center',
-        flexDirection: 'row',
-        borderWidth: 1,
-        borderColor: Colors.gray[80]
+        marginBottom: 65
     },
     amountContainer: {
         backgroundColor: 'transparent',
@@ -70,51 +65,20 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: 10
     },
-    monthBottomNav: {
-        backgroundColor: '#fff',
-        width: '100%',
-        height: Layout.window.height * 0.5,
-        paddingHorizontal: 10
-        //justifyContent: 'center',
-        //alignItems: 'center',
-    },
-    leadingBox: {
-        width: 30
-    },
-    bottmListItem: {
-        borderBottomWidth: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        borderColor: Colors.gray[60],
-        paddingVertical: 15
-    },
     recentTransaction: {
-        paddingHorizontal: 20,
+        paddingHorizontal: 10,
         backgroundColor: 'transparent'
     },
-    transactionItem: {
-        backgroundColor: 'transparent',
-        paddingVertical: 10
-    }
 })
 
 function HomeScreen({ navigation }) {
 
-    const [isOpen, setOpen] = React.useState(false);
-    const [selectedMonth, setSelectedMonth] = React.useState({id: 1, value: 'January'});
+    const onMonthSelect = (month) => {
+        console.log(month);
+    }
 
     const lineData = [{label: '4 weeks ago', value: 0},{label: '3 weeks ago', value: 10},{label: 'Last Monday', value: 8},{label: 'Tuesday', value: 108},{label: 'Two days ago', value: 56},{label: 'Yesterday', value: 78},{label: 'Today', value: 74}];
     const lineData2 = [{label: '4 weeks ago', value: 0},{label: '3 weeks ago', value: 50},{label: 'Last Monday', value: 18},{label: 'Tueday', value: 40},{label: 'Two days ago', value: 36},{label: 'Yesterday', value: 60},{label: 'Today', value: 54}];
-
-    const toggleMonthModal = () => {
-        console.log('opem')
-        setOpen(true);
-    }
-
-    const selectMonth = (item) => {
-        setSelectedMonth(item);
-        setOpen(false);
-    }
     
     return (
         // <SafeAreaView style={{ flex: 1 }}>
@@ -130,12 +94,7 @@ function HomeScreen({ navigation }) {
 
 
                     <View style={styles.actionBar}>
-                        <TouchableOpacity onPress={toggleMonthModal}>
-                            <View style={styles.actionSelect}> 
-                                <Typography.Body>{selectedMonth.value}</Typography.Body>
-                                <Ionicons style={{marginLeft: 5}} name="chevron-down" size={24} color={Colors.primary[100]} />
-                            </View>
-                        </TouchableOpacity>
+                        <MonthSelector onSelect={onMonthSelect} />
 
                         <View style={{backgroundColor: 'transparent'}}>
                             <Ionicons style={{marginLeft: 5}} name="notifications" size={24} color={Colors.primary[100]} />
@@ -200,85 +159,23 @@ function HomeScreen({ navigation }) {
 
                         {/* show transactions */}
                         <View style={styles.recentTransaction}>
-                            <View style={{padding: 10, flexDirection: 'row', justifyContent: 'space-between'}}>
+                            <View style={{padding: 10, flexDirection: 'row', marginBottom: 25, justifyContent: 'space-between', backgroundColor: 'transparent',}}>
                                 <Typography.TitleThree>Recent Transactions</Typography.TitleThree>
                                 <Pressable onPress={() => navigation.navigate('transactions')}>
                                     <Typography.Body style={{color: Colors.primary[100]}}>See All</Typography.Body>
                                 </Pressable>
                             </View>
 
-                            {Categories.expenses.map((item) => {
-                                const paths = '../../assets/travel.png';
-                                const icon = require(paths);
+                            {Data.recent_transactions.map((item) => {
                                     return (
-                                        <View style={styles.transactionItem}>
-                                            <Image
-                                                source={icon}
-                                                style={{height: 60, width: 60}}
-                                             />
-                                        </View>
+                                        <TransactionCard data={item} />
                                     );
                                 })}
                         </View>
 
                     </ScrollView>
                 </View>
-        
-                {/*  */}
-                <BottomSheet
-                visible={isOpen}
-                //setting the visibility state of the bottom shee
-                onBackButtonPress={() => setOpen(false)}
-                //Toggling the visibility state on the click of the back botton
-                onBackdropPress={() => setOpen(false)}
-                //Toggling the visibility state on the clicking out side of the sheet
-            >
-                {/*Bottom Sheet inner View*/}
-                <View style={styles.monthBottomNav}>
-                    <View
-                        style={{
-                            flex: 1,
-                            flexDirection: 'column',
-                            justifyContent: 'space-between',
-                        }}>
-                        <Typography.TitleThree
-                            style={{
-                                textAlign: 'center',
-                                padding: 20,
-                                fontSize: 16,
-                            }}>
-                            Select Month
-                            </Typography.TitleThree>
-                            <FlatList
-                                data={[
-                                    {id: 1, value: 'January'},
-                                    {id: 2, value: 'Ferbuary'},
-                                    {id: 3, value: 'March'},
-                                    {id: 4, value: 'April'},
-                                    {id: 5, value: 'May'},
-                                    {id: 6, value: 'June'},
-                                    {id: 7, value: 'July'},
-                                    {id: 8, value: 'August'},
-                                    {id: 9, value: 'Semptember'},
-                                    {id: 10, value: 'October'},
-                                    {id: 11, value: 'November'},
-                                    {id: 12, value: 'December'},
-                            ]}
-                            renderItem={({item}) => {
-                                return (
-                                <Pressable onPress={() => selectMonth(item)}>
-                                    <View style={styles.bottmListItem}>
-                                        <View style={styles.leadingBox}>{item.id === selectedMonth.id && <Ionicons name="checkmark" size={20} color={Colors.primary[100]} />}</View>
-                                        <Typography.Body style={{fontSize: 16}}>{item.value}</Typography.Body>
-                                    </View>
-                                </Pressable>
-                                );
-                            }
-                        }
-                        />
-                    </View>
-                </View>
-            </BottomSheet>
+    
             </View>
     )
 }

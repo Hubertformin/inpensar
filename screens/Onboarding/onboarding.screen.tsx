@@ -4,11 +4,11 @@ import { Image, StyleSheet } from 'react-native';
 import Button from '../../components/Button';
 import { View } from '../../components/Themed';
 import Typography from '../../components/Typography';
-import Layout from '../../constants/Layout';
+import Screen from '../../constants/Screen';
 
 const PageStyle = StyleSheet.create({
     pageView: { 
-        height: Layout.window.height * 0.65, 
+        height: Screen.window.height * 0.65, 
         marginBottom: 50 
     },
     container: {
