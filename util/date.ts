@@ -5,5 +5,5 @@ export function timeAgo(dateString) {
 }
 
 export function formatDate(dateString) {
-    return moment(dateString).calendar()
+    return moment(dateString).calendar({sameElse: 'DD/MM/YYYY'})
 }

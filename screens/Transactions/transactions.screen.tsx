@@ -1,8 +1,9 @@
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
-import { Pressable, StyleSheet, View, ScrollView } from 'react-native';
+import { Pressable, StyleSheet, ScrollView } from 'react-native';
 import { BottomSheet } from 'react-native-btr';
 import MonthSelector from '../../components/month-selector';
+import { View } from '../../components/Themed';
 import TransactionCard from '../../components/transaction-card';
 import Typography from '../../components/Typography';
 import Colors from '../../constants/Colors';
@@ -13,7 +14,7 @@ import useTheme from '../../hooks/colorScheme';
 const styles = StyleSheet.create({
     page: {
         flex: 1,
-        // backgroundColor: Colors.gray[20],
+        //backgroundColor: Colors.red[100],
     },
     actionBar: {
         flexDirection: 'row',
@@ -47,7 +48,7 @@ const styles = StyleSheet.create({
         // backgroundColor: Colors.primary[20]
     },
     filterBottomNav: {
-        backgroundColor: '#fff',
+        backgroundColor: Colors.darkText[80],
         width: '100%',
         height: Screen.window.height * 0.65,
         paddingHorizontal: 10
@@ -76,13 +77,13 @@ function TransactionsScreen() {
     }
 
     return (
-        <View style={styles.page}>
+        <View style={[styles.page]}>
             <View style={styles.actionBar}>
                 <MonthSelector />
 
-                <Pressable style={[styles.actionFilterButton, {borderColor: Colors[colorScheme].borderColor}]} onPress={openFilter}>
+                {/* <Pressable style={[styles.actionFilterButton, {borderColor: Colors[colorScheme].borderColor}]} onPress={openFilter}>
                     <Ionicons name="filter" size={30} color={Colors.gray[100]} />
-                </Pressable>
+                </Pressable> */}
             </View>
 
             <ScrollView style={styles.scrollView}>

@@ -54,7 +54,7 @@ export default {
   },
   light: {
     text: '#000',
-    background: '#f2f2f2',
+    background: '#fff',
     tint: '#7F3DFF',
     tabIconDefault: '#ccc',
     tabIconSelected: '#7F3DFF',
