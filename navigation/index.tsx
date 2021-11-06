@@ -23,6 +23,7 @@ import AddTransactionModal from '../screens/Modals/add-transaction.modal';
 import OnboardingScreen from '../screens/Onboarding/onboarding.screen';
 import AccountScreen from '../screens/Profile/accounts.screen';
 import ProfileScreen from '../screens/Profile/profile.screen';
+import TransactionReportScreen from '../screens/Transactions/transaction-reports.screen';
 import TransactionsScreen from '../screens/Transactions/transactions.screen';
 
 const Tab = createBottomTabNavigator();
@@ -322,6 +323,23 @@ function RootNavigator() {
                     headerBackTitleVisible: false
                   }}
             /> 
+
+            <Stack.Screen name="TransactionReportsScreen" component={TransactionReportScreen} 
+                options={{
+                    title: 'Financial Repport',
+                    headerStyle: {
+                        backgroundColor: Colors[colorScheme].background,
+                    },
+                    headerTintColor: Colors[colorScheme].text,
+                    headerTitleStyle: {
+                      fontWeight: 'bold',
+                      color: Colors[colorScheme].text,
+                    },
+                    // headerShown: false,
+                    headerShadowVisible: false,
+                    headerBackTitleVisible: false
+                  }}
+            />
 
             <Stack.Screen name="Root" component={BottomTabs} options={{headerShown: false}} />
             <Stack.Group screenOptions={{ presentation: 'modal' }}>

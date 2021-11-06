@@ -31,6 +31,7 @@
     "react-native-currency-input": "^1.0.1",
     "react-native-gesture-handler": "~1.10.2",
     "react-native-gifted-charts": "^0.1.13",
+    "react-native-looped-carousel": "^0.1.13",
     "react-native-modal-datetime-picker": "^13.0.0",
     "react-native-pager-view": "5.4.6",
     "react-native-safe-area-context": "^3.3.2",

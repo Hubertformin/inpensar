@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     }
 })
 
-function TransactionsScreen() {
+function TransactionsScreen({ navigation }) {
 
     const colorScheme = useTheme()
 
@@ -87,12 +87,13 @@ function TransactionsScreen() {
             </View>
 
             <ScrollView style={styles.scrollView}>
-                <View 
+                <Pressable 
+                onPress={() => navigation.navigate('TransactionReportsScreen')}
                     style={[styles.reportCard, {backgroundColor: ThemeColors[colorScheme].reportCardBackground}]}
                 >
                     <Typography.BodyLg style={{color: Colors.primary[100]}}>See your financial report</Typography.BodyLg>
                     <Ionicons name="chevron-forward" size={25} color={Colors.primary[100]} />
-                </View>
+                </Pressable>
 
                 <View style={{marginTop: 30}}>
                     {Data.transactions.map((record, index) => {
