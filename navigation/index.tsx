@@ -1,11 +1,12 @@
-import { FontAwesome, FontAwesome5, Foundation } from '@expo/vector-icons';
+import { FontAwesome, FontAwesome5, Foundation, Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import { ColorSchemeName, StyleSheet, TouchableOpacity, Image, View } from 'react-native';
+import { ColorSchemeName, StyleSheet, TouchableOpacity, Image, View, Pressable } from 'react-native';
 import PlaceHolderComponent from '../components/Placeholder';
 import { Text } from '../components/Themed';
+import Typography from '../components/Typography';
 
 import Colors from '../constants/Colors';
 import useTheme from '../hooks/colorScheme';
@@ -13,11 +14,14 @@ import CreatePinScreen from '../screens/auth/create-pin.screen';
 import ForgotPasswordScreen from '../screens/auth/forgot-password.screen';
 import LoginScreen from '../screens/auth/login.screen';
 import SignUpScreen from '../screens/auth/signup.screen';
+import AddBudgetScreen from '../screens/Budget/add-budget.screen';
+import BudgetDetailScreen from '../screens/Budget/budget-detail.screen';
 
 import BudgetScreen from '../screens/Budget/budget.screen';
 import HomeScreen from '../screens/Home/home.screen';
 import AddTransactionModal from '../screens/Modals/add-transaction.modal';
 import OnboardingScreen from '../screens/Onboarding/onboarding.screen';
+import AccountScreen from '../screens/Profile/accounts.screen';
 import ProfileScreen from '../screens/Profile/profile.screen';
 import TransactionsScreen from '../screens/Transactions/transactions.screen';
 
@@ -25,10 +29,10 @@ const Tab = createBottomTabNavigator();
 
 const TabStyles = StyleSheet.create({
     shadow: {
-        shadowColor: Colors.primary['100'],
+        shadowColor: Colors.primary['80'],
         shadowOffset: {
             width: 0,
-            height: 5
+            height: 3.5
         },
         shadowOpacity: 0.15,
         shadowRadius: 3.5,
@@ -41,7 +45,7 @@ const CustomTabButton = (props) => {
         <TouchableOpacity
         activeOpacity={0.8}
             style={{
-                top: -20,
+                // top: -10,
                 justifyContent: 'center',
                 alignItems: 'center',
                 ...TabStyles.shadow
@@ -133,8 +137,8 @@ function BottomTabs() {
                             source={require('../assets/Add.png')}
                             resizeMode="contain"
                             style={{
-                                height: 60,
-                                width: 60
+                                height: 50,
+                                width: 50
                             }}
                          />
                         )
@@ -154,6 +158,7 @@ function BottomTabs() {
                 options={({ navigation }) => ({
                     title: 'Budget',
                     // headerShown: false,
+                    
                     headerShadowVisible: false,
                     headerStyle: {
                         backgroundColor: Colors[colorScheme].background,
@@ -165,7 +170,16 @@ function BottomTabs() {
                             <Text style={{color, fontSize: 10}}>Budget</Text>
                         </View>
                         )
-                    }
+                    },
+                    headerRight: () => (
+                        <Pressable
+                            style={{paddingHorizontal: 15, flexDirection: 'row', alignItems: 'center'}}
+                            onPress={() => navigation.navigate('AddBudgetScreen')}
+                        >
+                            <Ionicons name="add" size={24} color={Colors.primary[100]}  />
+                            <Typography.BodyLg style={{color: Colors.primary[100]}}>Add</Typography.BodyLg>
+                        </Pressable>
+                      ),
                   })}
             />
             <Tab.Screen 
@@ -260,6 +274,55 @@ function RootNavigator() {
                     headerBackTitleVisible: false
                   }}
             />
+
+            <Stack.Screen name="AddBudgetScreen" component={AddBudgetScreen} 
+                options={{
+                    title: 'Add Budget',
+                    headerStyle: {
+                        backgroundColor: Colors[colorScheme].background,
+                    },
+                    headerTintColor: Colors[colorScheme].text,
+                    headerTitleStyle: {
+                      fontWeight: 'bold',
+                      color: Colors[colorScheme].text,
+                    },
+                    headerShadowVisible: false,
+                    headerBackTitleVisible: false
+                  }}
+            />
+
+            <Stack.Screen name="BudgetDetailScreen" component={BudgetDetailScreen} 
+                options={{
+                    title: 'Budget Details',
+                    headerStyle: {
+                        backgroundColor: Colors[colorScheme].background,
+                    },
+                    headerTintColor: Colors[colorScheme].text,
+                    headerTitleStyle: {
+                      fontWeight: 'bold',
+                      color: Colors[colorScheme].text,
+                    },
+                    headerShadowVisible: false,
+                    headerBackTitleVisible: false
+                  }}
+            />  
+
+            <Stack.Screen name="AccountsScreen" component={AccountScreen} 
+                options={{
+                    title: 'Accounts',
+                    headerStyle: {
+                        backgroundColor: Colors[colorScheme].background,
+                    },
+                    headerTintColor: Colors[colorScheme].text,
+                    headerTitleStyle: {
+                      fontWeight: 'bold',
+                      color: Colors[colorScheme].text,
+                    },
+                    headerShadowVisible: false,
+                    headerBackTitleVisible: false
+                  }}
+            /> 
+
             <Stack.Screen name="Root" component={BottomTabs} options={{headerShown: false}} />
             <Stack.Group screenOptions={{ presentation: 'modal' }}>
                 <Stack.Screen name="AddTransactionModal" 

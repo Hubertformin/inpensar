@@ -9,7 +9,7 @@ const defaultOptions: CurrencyFormatOptions = {
     significantDigits: 2,
     thousandsSeparator: ',',
     decimalSeparator: '.',
-    symbol: 'FCFA '
+    symbol: 'FCFA'
   }
   
 export const currencyFormatter = (value, options = defaultOptions) => {

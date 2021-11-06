@@ -4,6 +4,15 @@ export function timeAgo(dateString) {
     return moment(dateString).fromNow();
 }
 
-export function formatDate(dateString) {
-    return moment(dateString).calendar({sameElse: 'DD/MM/YYYY'})
+interface DateFormatOptions {
+    time?: boolean;
+}
+
+export function formatDate(dateString, options?: DateFormatOptions) {
+
+    const _options: DateFormatOptions = {time: true, ...options};
+
+    const _calendar_date = moment(dateString).calendar({sameElse: 'DD/MM/YYYY'})
+
+    return _options?.time ? _calendar_date : _calendar_date.split(' ')[0];
 }

@@ -21,6 +21,10 @@ export default function App() {
       'Gilroy-medium': require('./assets/fonts/gilroy/Gilroy-Medium.ttf'),
       'Gilroy-semibold': require('./assets/fonts/gilroy/Gilroy-Semibold.ttf'),
       'Gilroy-bold': require('./assets/fonts/gilroy/Gilroy-Bold.ttf'),
+      'Inter': require('./assets/fonts/Inter/Inter-Regular.ttf'),
+      'Inter-medium': require('./assets/fonts/Inter/Inter-Medium.ttf'),
+      'Inter-semibold': require('./assets/fonts/Inter/Inter-SemiBold.ttf'),
+      'Inter-bold': require('./assets/fonts/Inter/Inter-Bold.ttf'),
     };
     // load fonts
     await Font.loadAsync(customFonts);

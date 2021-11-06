@@ -14,9 +14,9 @@ const ButtonStyle = StyleSheet.create({
         flexDirection: 'row',
     },
     text: {
-        fontSize: 15,
-        fontFamily: 'Gilroy-medium',
-        fontWeight: '500'
+        fontSize: 16,
+        fontFamily: 'Inter-medium',
+        fontWeight: 'bold'
     }
 })
 

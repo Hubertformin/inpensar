@@ -7,6 +7,7 @@ import { View, Text } from "./Themed";
 
 interface InputProps extends TextInputProps {
     label?: string;
+    outline?: boolean;
 }
 
 const Style = StyleSheet.create({
@@ -17,17 +18,17 @@ const Style = StyleSheet.create({
     },
     label: {
         fontSize: 12,
-        fontFamily: 'Gilroy-semibold',
+        fontFamily: 'Inter-medium',
+        fontWeight: 'bold',
         marginBottom: 5,
         marginHorizontal: 5,
     },
     input: {
         height: 48,
         fontSize: 16,
-        fontFamily: 'Gilroy-medium',
-        borderWidth: 1,
+        fontFamily: 'Inter',
+        borderBottomWidth: 1,
         paddingHorizontal: 10,
-        borderRadius: 7,
     },
     passwordEye: {
         height: 30,
@@ -56,13 +57,22 @@ function Input({children}) {
 const InputText = (props: InputProps) => {
 
     const colorScheme = useTheme();
+     // if outline is true
+     let borderStyle = {};
+     if (props.outline) {
+         borderStyle = {
+             borderWidth: 1,
+             paddingHorizontal: 10,
+             borderRadius: 7,
+         }
+     }
 
     return (
         <View style={Style.inputContainer}>
             {props.label && <Text style={Style.label}>{props.label}</Text>}
             <TextInput 
                 {...props}
-                style={[Style.input, {color: Colors[colorScheme].text, borderColor: Colors[colorScheme].borderColor}]}></TextInput>
+                style={[Style.input, {color: Colors[colorScheme].text, borderColor: Colors[colorScheme].borderColor}, borderStyle]}></TextInput>
         </View>
     )
 }
@@ -71,12 +81,22 @@ const InputEmail = (props: InputProps) => {
 
     const colorScheme = useTheme();
 
+    // if outline is true
+    let borderStyle = {};
+    if (props.outline) {
+        borderStyle = {
+            borderWidth: 1,
+            paddingHorizontal: 10,
+            borderRadius: 7,
+        }
+    }
+
     return (
         <View style={Style.inputContainer}>
             {props.label && <Text style={Style.label}>{props.label}</Text>}
             <TextInput 
                 {...props} 
-                style={[Style.input, {color: Colors[colorScheme].text, borderColor: Colors[colorScheme].borderColor}]}></TextInput>
+                style={[Style.input, {color: Colors[colorScheme].text, borderColor: Colors[colorScheme].borderColor}, borderStyle]}></TextInput>
         </View>
     )
 }

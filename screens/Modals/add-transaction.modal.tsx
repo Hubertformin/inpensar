@@ -214,13 +214,14 @@ function AddTransactionModal() {
                 >
                     <Typography.BodyLg style={{color: Colors.gray[80], fontSize: 18}}>How much?</Typography.BodyLg>
                     <View style={styles.formControl}>
-                        <Typography.Body style={{fontSize: 46, marginRight: 15, color: Colors.gray[20]}}>FCFA</Typography.Body>
-                        <TextInput placeholder="0" focusable={true} style={styles.amountInput} />
+                        <Typography.Body style={{fontSize: 46, marginRight: 15, fontWeight: 'bold', color: Colors.gray[20]}}>FCFA</Typography.Body>
+                        <TextInput placeholder="0" focusable={true} style={styles.amountInput} keyboardType="number-pad" />
 
                     </View>
                 </View>
                 <View style={styles.secondForm}>
                         <TouchableOpacity 
+                        activeOpacity={0.7}
                             style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 40}}
                             onPress={() => setShowDatePicker(true)}
                         >
@@ -231,7 +232,7 @@ function AddTransactionModal() {
                             <Ionicons style={{marginLeft: 5}} name="chevron-forward" size={16} color={Colors.gray[100]} />
                         </TouchableOpacity>
 
-                        <View style={{flexDirection: 'row', alignItems: 'flex-start', marginBottom: 10}}>
+                        <View style={{flexDirection: 'row', alignItems: 'flex-start', marginBottom: 40}}>
                             <Ionicons name="pencil" size={20} color={Colors.gray[100]} />
                             <TextInput 
                                 style={{

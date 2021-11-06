@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View } from "./Themed"
+import { Text, TextProps, View } from "./Themed"
 
 const Typography = ({children}) => {
     let subComponentList = Object.keys(Typography);
@@ -19,52 +19,52 @@ const Typography = ({children}) => {
     );
 }
 
-const TitleOne = (props) => {
-    const style = {fontFamily: 'Gilroy-bold', fontSize: 32, ...props.style}
+const TitleOne = (props: TextProps) => {
+    const style = {fontFamily: 'Inter-bold', fontSize: 32}
     return(
-        <Text {...props} style={{...style}} />
+        <Text {...props} style={[style, props.style]} />
     )
 }
 
-const TitleTwo =  (props) => {
-    const style = {fontFamily: 'Gilroy-bold', fontSize: 24, ...props.style}
+const TitleTwo =  (props: TextProps) => {
+    const style = {fontFamily: 'Inter-bold', fontSize: 24}
     return(
-        <Text {...props} style={{...style}} />
+        <Text {...props} style={[style, props.style]} />
     )
 }
 
-const TitleThree = (props) => {
-    const style = {fontFamily: 'Gilroy-semibold', fontSize: 18, ...props.style}
+const TitleThree = (props: TextProps) => {
+    const style = {fontFamily: 'Inter-semibold', fontSize: 18}
     return(
-        <Text {...props} style={{...style}} />
+        <Text {...props} style={[style, props.style]} />
     )
 }
 
-const Body = (props) => {
-    const style = {fontFamily: 'Gilroy-medium', fontSize: 14, ...props.style}
+const Body = (props: TextProps) => {
+    const style = {fontFamily: 'Inter', fontSize: 14}
     return(
-        <Text {...props} style={{...style}} />
+        <Text {...props} style={[style, props.style]} />
     )
 }
 
-const BodyLg = (props) => {
-    const style = {fontFamily: 'Gilroy-medium', fontSize: 16, ...props.style}
+const BodyLg = (props: TextProps) => {
+    const style = {fontFamily: 'Inter-medium', fontSize: 16}
     return(
-        <Text {...props} style={{...style}} />
+        <Text {...props} style={[style, props.style]} />
     )
 }
 
-const Small = (props) => {
-    const style = {fontFamily: 'Gilroy', fontSize: 13, ...props.style}
+const Small = (props: TextProps) => {
+    const style = {fontFamily: 'Inter', fontSize: 13}
     return(
-        <Text {...props} style={{...style}} />
+        <Text {...props} style={[style, props.style]} />
     )
 }
 
-const Tiny = (props) => {
-    const style = {fontFamily: 'Gilroy', fontSize: 12, ...props.style}
+const Tiny = (props: TextProps) => {
+    const style = {fontFamily: 'Inter', fontSize: 12}
     return(
-        <Text {...props} style={{...style}} />
+        <Text {...props} style={[style, props.style]} />
     )
 }
 

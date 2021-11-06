@@ -30,6 +30,20 @@ export default {
     60: '#FD6F7A',
     40: '#FDA2A9',
     20: '#FDD5D7',
+    dark: {
+      100: '#FD3C4A',
+      80: '#FD5662',
+      60: '#A34149',
+      40: '#5E3337',
+      20: '#302525',
+    },
+    light: {
+      100: '#FD3C4A',
+      80: '#FD5662',
+      60: '#FD6F7A',
+      40: '#FDA2A9',
+      20: '#FDD5D7',
+    }
   },
   yellow:{
     100: '#FCAC12',
@@ -63,7 +77,7 @@ export default {
   },
   dark: {
     text: '#fff',
-    background: '#000',
+    background: '#131313',
     tint: '#EEE5FF',
     tabIconDefault: '#ccc',
     tabIconSelected: '#EEE5FF',
